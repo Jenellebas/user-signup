@@ -16,10 +16,16 @@ def validate_username():
     verify_password = request.form['verify-password']
     email = request.form['email']
 
+    username_error = ""
+    password_error = ""
+    verify_password_error = ""
+    email_error = ""
+
 #if user enters nothing in box and tries to submit it.
     if username == "":
         username_error = "You must enter a Username."
         username = ""
+
     #else: #if username is less than 3 characters  or more than 20
         #if len(username) < 3 or len(username) > 20:
             #username_error = "That is not a valid username."
@@ -36,9 +42,10 @@ def validate_username():
 
 #check to see if any errors 
     if not username_error and not password_error and not verify_password_error:# and not email_error:
-        return redirect('/all-valid')
+        username = username
+        return redirect('/all-valid?username={0}'.format(username))
     else:
-        return render_template('user-form.html', username_error=username_error, password_error=password_error, verify_password_error=verify_password_error)
+        return render_template('user-form.html', username=username, email=email, username_error=username_error, password_error=password_error, verify_password_error=verify_password_error)
 
 #if all user info is correct:
 @app.route('/all-valid')
