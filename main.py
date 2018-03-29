@@ -26,17 +26,22 @@ def validate_username():
         username_error = "You must enter a Username."
         username = ""
 
-    else: #if username is less than 3 characters  or more than 20
-        if len(username) < 3 or len(username) > 20:
+    #if username is less than 3 characters  or more than 20
+    if len(username) < 3 or len(username) > 20:
+        username_error = "That is not a valid username."
+        username = ""
+
+    #if username has a space
+    for char in username:
+        if char == " ":
             username_error = "That is not a valid username."
-            username = ""
-        
+            username = ""    
 
 
     if password == "":
         password_error = "You must enter a Password."
         password = ""
-        
+
     else: #if password is less than 3 characters  or more than 20
         if len(password) < 3 or len(password) > 20:
             password_error = "That is not a valid username."
