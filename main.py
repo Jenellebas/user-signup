@@ -53,10 +53,16 @@ def validate_username():
             password_error = "That is not a valid password."
             password = ""    
     
-
+    #if verify password is blank
     if verify_password == "":
         verify_password_error = "Passwords don't match."
         verify_password = ""
+
+    #if password and verify password don't match
+    if password != verify_password:
+        verify_password_error = "Password don't match."
+        verify_password = ""
+        password = ""
 
 #check to see if any errors 
     if not username_error and not password_error and not verify_password_error:# and not email_error:
