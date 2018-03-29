@@ -27,18 +27,18 @@ def validate_username():
         
 
 
-    #if password == "":
-        #password_error = "You must enter a Password."
-       # password = ""
-    #if verify_password == "":
-        #verify_password_error = "Passwords don't match."
-       # verify_password = ""
+    if password == "":
+        password_error = "You must enter a Password."
+        password = ""
+    if verify_password == "":
+        verify_password_error = "Passwords don't match."
+        verify_password = ""
 
 #check to see if any errors 
-    if not username_error: # and not password_error and not verify_password_error and not email_error:
+    if not username_error and not password_error and not verify_password_error:# and not email_error:
         return redirect('/all-valid')
     else:
-        return render_template('user-form.html', username_error=username_error)
+        return render_template('user-form.html', username_error=username_error, password_error=password_error, verify_password_error=verify_password_error)
 
 #if all user info is correct:
 @app.route('/all-valid')
