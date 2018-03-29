@@ -9,6 +9,19 @@ app.config['DEBUG'] = True
 def index():
     return render_template('user-form.html')
 
+#def is_letter_count_one():
+#letter_count = 0
+#email = email
+#char = "@"
+#    try:
+#        for letter in email:
+#            if letter == char:
+#                letter_count += 1
+#        return letter_count
+#        letter_count == 1
+#        return True
+
+
 @app.route('/', methods=['POST'])
 def validate_username():
     username = request.form['username']
@@ -21,7 +34,7 @@ def validate_username():
     verify_password_error = ""
     email_error = ""
 
-#if username is blank
+    #if username is blank
     if username == "":
         username_error = "You must enter a username."
         username = ""
@@ -64,12 +77,30 @@ def validate_username():
         verify_password = ""
         password = ""
 
+    #if email is not between 3 and 20 characters long
+    if len(email) != 0 and len(email) < 3 or len(email) > 20:
+        email_error = "That is not a valid email."
+        email = ""
+
+    #if email has a space
+    for char in email:
+        if char == " ":
+            email_error = "That is not a valid email."
+            email = ""   
+    
+    #if email has more than 1 @
+    #if not letter
+    #if letter_count > 1:
+    #    email_error = "That is not a valid email."
+    #    email = ""  
+
+
 #check to see if any errors 
-    if not username_error and not password_error and not verify_password_error:# and not email_error:
+    if not username_error and not password_error and not verify_password_error and not email_error:
         username = username
         return redirect('/all-valid?username={0}'.format(username))
     else:
-        return render_template('user-form.html', username=username, email=email, username_error=username_error, password_error=password_error, verify_password_error=verify_password_error)
+        return render_template('user-form.html', username=username, email=email, username_error=username_error, password_error=password_error, verify_password_error=verify_password_error, email_error=email_error)
 
 #if all user info is correct:
 @app.route('/all-valid')
