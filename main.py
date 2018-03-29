@@ -26,10 +26,10 @@ def validate_username():
         username_error = "You must enter a Username."
         username = ""
 
-    #else: #if username is less than 3 characters  or more than 20
-        #if len(username) < 3 or len(username) > 20:
-            #username_error = "That is not a valid username."
-            #username = ""
+    else: #if username is less than 3 characters  or more than 20
+        if len(username) < 3 or len(username) > 20:
+            username_error = "That is not a valid username."
+            username = ""
         
 
 
@@ -52,6 +52,5 @@ def validate_username():
 def all_valid():
     username = request.args.get('username')
     return render_template('all-valid.html', username=username)
-
 
 app.run()
