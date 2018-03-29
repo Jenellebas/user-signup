@@ -21,12 +21,12 @@ def validate_username():
     verify_password_error = ""
     email_error = ""
 
-#if user enters nothing in box and tries to submit it.
+#if username is blank
     if username == "":
-        username_error = "You must enter a Username."
+        username_error = "You must enter a username."
         username = ""
 
-    #if username is less than 3 characters  or more than 20
+    #if username is less than 3 characters or more than 20
     if len(username) < 3 or len(username) > 20:
         username_error = "That is not a valid username."
         username = ""
@@ -37,16 +37,22 @@ def validate_username():
             username_error = "That is not a valid username."
             username = ""    
 
-
+    #if password is blank
     if password == "":
-        password_error = "You must enter a Password."
+        password_error = "You must enter a password."
         password = ""
 
-    else: #if password is less than 3 characters  or more than 20
-        if len(password) < 3 or len(password) > 20:
-            password_error = "That is not a valid username."
-            password = ""
-        
+    #if password is less than 3 characters or more than 20
+    if len(password) < 3 or len(password) > 20:
+        password_error = "That is not a valid password."
+        password = ""
+
+    #if password has a space
+    for char in password:
+        if char == " ":
+            password_error = "That is not a valid password."
+            password = ""    
+    
 
     if verify_password == "":
         verify_password_error = "Passwords don't match."
