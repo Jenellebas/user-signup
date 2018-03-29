@@ -16,7 +16,6 @@ def validate_username():
     verify_password = request.form['verify-password']
     email = request.form['email']
 
-
 #if user enters nothing in box and tries to submit it.
     if username == "":
         username_error = "You must enter a Username."
@@ -28,18 +27,24 @@ def validate_username():
         
 
 
-    if password == "":
-        error = "You must enter a Password."
-        return redirect("/?error=" + error)
-    if verify_password == "":
-        error = "Passwords don't match."
-        return redirect("/?error=" + error)
+    #if password == "":
+        #password_error = "You must enter a Password."
+       # password = ""
+    #if verify_password == "":
+        #verify_password_error = "Passwords don't match."
+       # verify_password = ""
+
+#check to see if any errors 
+    if not username_error: # and not password_error and not verify_password_error and not email_error:
+        return redirect('/all-valid')
+    else:
+        return render_template('user-form.html', username_error=username_error)
 
 #if all user info is correct:
 @app.route('/all-valid')
 def all_valid():
     username = request.args.get('username')
-    return '<h1>Welcome, {0}!</h1>'.format(username)
+    return render_template('all-valid.html', username=username)
 
 
 app.run()
