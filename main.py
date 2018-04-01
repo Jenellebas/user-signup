@@ -9,19 +9,6 @@ app.config['DEBUG'] = True
 def index():
     return render_template('user-form.html')
 
-#def is_letter_count_one():
-#letter_count = 0
-#email = email
-#char = "@"
-#    try:
-#        for letter in email:
-#            if letter == char:
-#                letter_count += 1
-#        return letter_count
-#        letter_count == 1
-#        return True
-
-
 @app.route('/', methods=['POST'])
 def validate_username():
     username = request.form['username']
@@ -89,10 +76,23 @@ def validate_username():
             email = ""   
     
     #if email has more than 1 @
-    #if not letter
-    #if letter_count > 1:
-    #    email_error = "That is not a valid email."
-    #    email = ""  
+    char_count = 0
+    for char in email:
+        if char == "@":
+            char_count += 1
+            if char_count > 1:
+                email_error = "That is not a valid email."
+                email = ""
+    
+    #if email has more than 1 .
+    char_count = 0
+    for char in email:
+        if char == ".":
+            char_count += 1
+            if char_count > 1:
+                email_error = "That is not a valid email."
+                email = ""
+      
 
 
 #check to see if any errors 
