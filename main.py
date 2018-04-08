@@ -60,7 +60,7 @@ def validate_username():
 
     #if password and verify password don't match
     if password != verify_password:
-        verify_password_error = "Password don't match."
+        verify_password_error = "Passwords don't match."
         verify_password = ""
         password = ""
 
